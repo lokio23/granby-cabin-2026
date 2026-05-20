@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Granby Cabin — May 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brown:      #2C1A0E;
+      --cream:      #F5EDD6;
+      --gold:       #C9973F;
+      --gold-light: #F0DCA8;
+      --green:      #3D5A3E;
+      --bg:         #FAF5E9;
+      --text:       #1A1008;
+      --text-muted: #6B4A28;
+      --border:     #DEC98A;
+      --card-bg:    #FFFDF5;
+      --red:        #8B2E2E;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--brown);
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav a {
+      color: var(--gold-light);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding: 14px 14px;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+    nav a:hover { opacity: 1; color: #fff; }
+    nav a.brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      opacity: 1;
+      padding-right: 20px;
+      margin-right: 8px;
+      border-right: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    section { margin-bottom: 3.5rem; }
+
+    /* ── TYPOGRAPHY ── */
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--brown);
+    }
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--brown);
+      margin: 1.5rem 0 0.5rem;
+    }
+    h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 1.2rem 0 0.4rem;
+    }
+    p { margin-bottom: 0.75rem; }
+    ul, ol { padding-left: 1.4rem; margin-bottom: 0.75rem; }
+    li { margin-bottom: 0.3rem; }
+    strong { font-weight: 600; }
+    em { font-style: italic; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--brown);
+      color: var(--cream);
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+    }
+    .hero h1 { color: #fff; margin-bottom: 1rem; }
+    .hero .sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--gold-light);
+      margin-bottom: 0.4rem;
+    }
+    .hero .dates {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-top: 1rem;
+    }
+
+    /* ── TONIGHT BANNER ── */
+    .tonight-banner {
+      background: var(--green);
+      color: #fff;
+      border-radius: 10px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2rem;
+    }
+    .tonight-banner h2 { color: #fff; margin-bottom: 0.75rem; font-size: 1.3rem; }
+    .tonight-banner .checklist { list-style: none; padding: 0; }
+    .tonight-banner .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      margin-bottom: 0.55rem;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .tonight-banner .checklist li input[type="checkbox"] {
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .tonight-banner .note {
+      font-size: 12px;
+      opacity: 0.75;
+      margin-top: 0.75rem;
+      font-style: italic;
+    }
+
+    /* ── WEEK OVERVIEW CARDS ── */
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.85rem;
+    }
+    .day-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      text-decoration: none;
+      color: var(--text);
+      display: block;
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .day-card:hover { box-shadow: 0 4px 16px rgba(44,26,14,0.12); transform: translateY(-2px); }
+    .day-card .day-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .day-card .meal-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--brown);
+      margin-bottom: 0.25rem;
+      line-height: 1.25;
+    }
+    .day-card .meal-side {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .day-card .tag {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 20px;
+    }
+    .tag-us { background: #E8F0E8; color: var(--green); }
+    .tag-guests { background: #F0E8D8; color: #7A4A18; }
+    .tag-out { background: #E8E8F0; color: #3A3A6A; }
+    .tag-leftover { background: #F8EDE0; color: #7A4018; }
+    .day-card.highlight { border-color: var(--gold); border-width: 2px; }
+    .day-card.tonight { background: #FFFBF0; border-color: var(--green); border-width: 2px; }
+
+    /* ── QUICK REFERENCE ── */
+    .qr-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 600px) { .qr-grid { grid-template-columns: 1fr; } }
+    .qr-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.1rem 1.25rem;
+    }
+    .qr-card h4 { margin-top: 0; }
+    .temp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .temp-table th {
+      text-align: left;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 0 0 6px;
+      border-bottom: 1px solid var(--border);
+    }
+    .temp-table td { padding: 6px 0; border-bottom: 1px solid #F0E8D0; vertical-align: top; }
+    .temp-table td:first-child { font-weight: 500; padding-right: 10px; }
+    .temp-table .pull { color: var(--red); font-weight: 600; }
+    .temp-table tr:last-child td { border-bottom: none; }
+    .timing-list { list-style: none; padding: 0; font-size: 13px; }
+    .timing-list li { padding: 5px 0; border-bottom: 1px solid #F0E8D0; display: flex; gap: 0.5rem; }
+    .timing-list li:last-child { border-bottom: none; }
+    .timing-list .emoji { flex-shrink: 0; }
+
+    /* ── SECTION DIVIDER ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-number {
+      background: var(--brown);
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── RECIPE CARDS ── */
+    .recipe-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .recipe-block h3 { margin-top: 0; }
+    .romantic-note {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      border-left: 3px solid var(--gold);
+      padding-left: 0.75rem;
+    }
+
+    /* ── TEMP CALLOUT ── */
+    .temp-callout {
+      background: #FFF8E6;
+      border: 1.5px solid var(--gold);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .temp-item { text-align: center; }
+    .temp-item .label { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-muted); display: block; }
+    .temp-item .value { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--red); display: block; line-height: 1.1; }
+    .temp-item .note { font-size: 11px; color: var(--text-muted); display: block; }
+    .temp-callout.green { background: #F0F5F0; border-color: var(--green); }
+    .temp-callout.green .value { color: var(--green); }
+
+    /* ── WINE PAIRING ── */
+    .wine-pairing {
+      background: #F5EEFA;
+      border-left: 3px solid #8B5CA0;
+      border-radius: 0 6px 6px 0;
+      padding: 0.6rem 1rem;
+      font-size: 13px;
+      margin: 0.75rem 0;
+    }
+    .wine-pairing strong { color: #5A2D82; }
+
+    /* ── PLATING NOTE ── */
+    .plating-note {
+      background: var(--cream);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      padding: 0.6rem 1rem;
+      font-size: 13px;
+      font-style: italic;
+      margin: 0.75rem 0;
+      color: var(--text-muted);
+    }
+
+    /* ── TIMING BLOCKS ── */
+    .timing-block {
+      background: #EEF3EE;
+      border: 1px solid #C5D9C5;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      font-size: 13px;
+    }
+    .timing-block h4 { color: var(--green); margin-top: 0; }
+    .timing-block ol { margin: 0; }
+    .timing-block li { margin-bottom: 0.4rem; }
+    .timing-block .time { font-weight: 600; color: var(--green); min-width: 4.5rem; display: inline-block; }
+
+    /* ── SMOKE TIMELINE ── */
+    .smoke-timeline { position: relative; padding-left: 2rem; }
+    .smoke-timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 4px;
+      bottom: 4px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold), var(--brown));
+      border-radius: 2px;
+    }
+    .smoke-event {
+      position: relative;
+      margin-bottom: 1.1rem;
+      font-size: 14px;
+    }
+    .smoke-event::before {
+      content: '';
+      position: absolute;
+      left: -1.85rem;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+    }
+    .smoke-event.key::before { background: var(--brown); width: 12px; height: 12px; left: -1.95rem; top: 5px; }
+    .smoke-event .stime {
+      font-weight: 700;
+      color: var(--brown);
+      display: inline-block;
+      min-width: 5.5rem;
+    }
+    .smoke-event .sdesc { color: var(--text); }
+    .smoke-event .snote { font-size: 12px; color: var(--text-muted); font-style: italic; display: block; margin-top: 2px; padding-left: 5.8rem; }
+    .smoke-day-divider {
+      text-align: center;
+      margin: 1.5rem 0;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── TROUBLESHOOTING ── */
+    .trouble-group {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+    }
+    .trouble-group summary {
+      padding: 0.85rem 1.1rem;
+      background: #FFF8EE;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--brown);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+    .trouble-group summary::-webkit-details-marker { display: none; }
+    .trouble-group summary::after {
+      content: '+';
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+    .trouble-group[open] > summary::after { content: '−'; }
+    .trouble-group[open] > summary { border-bottom: 1px solid var(--border); }
+    .trouble-item {
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .trouble-item:last-child { border-bottom: none; }
+    .trouble-q {
+      background: var(--card-bg);
+      padding: 0.7rem 1.1rem;
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--brown);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      border-bottom: 1px solid transparent;
+    }
+    .trouble-q::-webkit-details-marker { display: none; }
+    .trouble-q::after {
+      content: '›';
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      margin-left: 0.75rem;
+      transition: transform 0.2s;
+    }
+    details.trouble-qa[open] > .trouble-q::after { transform: rotate(90deg); }
+    details.trouble-qa[open] > .trouble-q { border-bottom: 1px solid var(--border); }
+    .trouble-a {
+      padding: 0.75rem 1.1rem;
+      font-size: 13px;
+      background: #FFFDF8;
+      line-height: 1.6;
+    }
+
+    /* ── GROCERY LIST ── */
+    .grocery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 600px) { .grocery-grid { grid-template-columns: 1fr; } }
+    .grocery-col h3 { margin-top: 0; }
+    .grocery-col h4 { color: var(--brown); }
+    .grocery-list { list-style: none; padding: 0; font-size: 13.5px; }
+    .grocery-list li {
+      padding: 5px 0;
+      border-bottom: 1px solid #EDE4CC;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .grocery-list li:last-child { border-bottom: none; }
+    .grocery-list li input[type="checkbox"] { flex-shrink: 0; margin-top: 3px; }
+    .grocery-store-header {
+      background: var(--brown);
+      color: #fff;
+      padding: 0.75rem 1rem;
+      border-radius: 8px 8px 0 0;
+      margin-bottom: 0;
+    }
+    .grocery-store-header h3 { color: #fff; margin: 0; font-size: 1rem; }
+    .grocery-store-header .sub { font-size: 11px; color: var(--gold-light); opacity: 0.9; }
+    .grocery-body {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      padding: 1rem 1.1rem;
+    }
+
+    /* ── GEAR ── */
+    .gear-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 0.5rem;
+    }
+    .gear-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.6rem 0.9rem;
+      font-size: 13.5px;
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+    }
+    .gear-item input[type="checkbox"] { flex-shrink: 0; margin-top: 3px; }
+    .gear-item.critical { border-color: var(--red); background: #FFF5F5; }
+    .gear-item.critical::after { content: ' ★'; color: var(--red); font-size: 11px; }
+
+    /* ── INGREDIENTS GRID ── */
+    .ing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 1.5rem;
+      font-size: 13.5px;
+    }
+    @media (max-width: 500px) { .ing-grid { grid-template-columns: 1fr; } }
+
+    /* ── STEPS ── */
+    .steps { counter-reset: step-counter; list-style: none; padding: 0; font-size: 14px; }
+    .steps li {
+      counter-increment: step-counter;
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+      align-items: flex-start;
+    }
+    .steps li::before {
+      content: counter(step-counter);
+      background: var(--gold);
+      color: var(--brown);
+      font-weight: 700;
+      font-size: 11px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── COOLER STRATEGY ── */
+    .cooler-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .cooler-table th {
+      text-align: left;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 6px 10px 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cooler-table td { padding: 7px 10px 7px 0; border-bottom: 1px solid #EEE4CC; font-size: 13px; vertical-align: top; }
+    .cooler-table tr:last-child td { border-bottom: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 2rem;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+    }
+    footer span { color: var(--gold-light); }
+
+    /* ── PRINT ── */
+    @media print {
+      nav { display: none; }
+      body { font-size: 12px; background: #fff; }
+      .hero { padding: 2rem 1rem; }
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.4rem; }
+      .week-grid { grid-template-columns: repeat(3, 1fr); }
+      .qr-grid { grid-template-columns: 1fr 1fr; }
+      .grocery-grid { grid-template-columns: 1fr 1fr; }
+      section { page-break-inside: avoid; margin-bottom: 1.5rem; }
+      .recipe-block { page-break-inside: avoid; }
+      .tonight-banner { border: 2px solid var(--green); background: #E8F0E8; color: var(--text); }
+      .tonight-banner h2 { color: var(--green); }
+    }
+
+    /* ── CHECKBOXES ── */
+    input[type="checkbox"].cabin-check {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+    label.cabin-label {
+      cursor: pointer;
+      flex: 1;
+    }
+    .checked-item label.cabin-label {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+    .tonight-banner .checked-item label.cabin-label {
+      opacity: 0.45;
+    }
+
+    /* ── UTIL ── */
+    .tag-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+    .badge {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 3px 9px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+    .badge-brown { background: var(--cream); color: var(--brown); }
+    .badge-green { background: #DCF0DC; color: var(--green); }
+    .badge-gold { background: #FFF0CC; color: #7A5A00; }
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     NAV
+══════════════════════════════════════════════════════ -->
+<nav>
+  <a href="#hero" class="brand">Granby '26</a>
+  <a href="#tonight">Tonight</a>
+  <a href="#overview">The Week</a>
+  <a href="#quickref">Temps</a>
+  <a href="#burgers">Burgers</a>
+  <a href="#chuckroast">Chuck Roast</a>
+  <a href="#leftovers">Leftovers</a>
+  <a href="#tbones">T-Bones</a>
+  <a href="#salmonday">Salmon Day</a>
+  <a href="#filet">Filet</a>
+  <a href="#troubleshoot">Troubleshooting</a>
+  <a href="#gear">Gear</a>
+  <a href="#groceries">Groceries</a>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════ -->
+<div class="hero" id="hero">
+  <p class="sub">Nine days. A cabin in the Rockies. Just the two of you.</p>
+  <h1>Granby, Colorado</h1>
+  <p class="dates">May 20 – 28, 2026 &nbsp;·&nbsp; Granby, CO &nbsp;·&nbsp; Traeger + Cast Iron</p>
+</div>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════════════════
+     TONIGHT
+══════════════════════════════════════════════════════ -->
+<section id="tonight">
+  <div class="tonight-banner">
+    <h2>☐ Do Tonight Before You Leave Fort Collins</h2>
+    <ul class="checklist">
+      <li><strong>Make compound butter for T-bones</strong> — soften butter, mix in minced garlic, parsley, thyme, lemon zest, fleur de sel. Roll in plastic wrap, refrigerate. Keeps all trip.</li>
+      <li><strong>Make compound butter for filet</strong> — same process. Do both at once, label them.</li>
+      <li><strong>Mix coleslaw dressing</strong> — whisk vinegar, sugar, salt, pepper into a jar. Lid on, toss in the cooler. Dress the cabbage at the cabin on arrival.</li>
+      <li><strong>Bag dry brine aromatics</strong> — bay leaves, peppercorns, ginger into a zip bag. Saturday brine becomes 5 minutes, not a pantry hunt.</li>
+      <li><strong>Pack your meat thermometer</strong> — non-negotiable. If you don't own one, buy an instant-read at the grocery store tonight.</li>
+      <li><strong>Confirm cabin has:</strong> oven, stovetop, Dutch oven (or pack yours), 12" cast iron skillet (or pack yours), sheet pan, wire rack.</li>
+    </ul>
+    <p class="note">This is 30–45 minutes of work tonight that saves you stress all week.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     WEEK AT A GLANCE
+══════════════════════════════════════════════════════ -->
+<section id="overview">
+  <h2>The Week at a Glance</h2>
+  <div class="week-grid">
+
+    <a class="day-card tonight" href="#burgers">
+      <div class="day-label">Day 1 · Wed May 20</div>
+      <div class="meal-name">Smash Burgers</div>
+      <div class="meal-side">+ Vinegar Coleslaw</div>
+      <span class="tag tag-us">Just the two of you</span>
+    </a>
+
+    <a class="day-card highlight" href="#chuckroast">
+      <div class="day-label">Day 2 · Thu May 21</div>
+      <div class="meal-name">Braised Chuck Roast</div>
+      <div class="meal-side">+ Garlic Mashed Potatoes · Red Wine</div>
+      <span class="tag tag-us">Just the two of you</span>
+    </a>
+
+    <a class="day-card" href="#leftovers">
+      <div class="day-label">Day 3 · Fri May 22</div>
+      <div class="meal-name">Pulled Beef Tacos</div>
+      <div class="meal-side">Leftover from chuck roast</div>
+      <span class="tag tag-leftover">Leftover night</span>
+    </a>
+
+    <a class="day-card" href="#leftovers">
+      <div class="day-label">Day 4 · Sat May 23</div>
+      <div class="meal-name">Beef Hash Brunch</div>
+      <div class="meal-side">Eat out in Granby for dinner · Brine salmon at 6 PM</div>
+      <span class="tag tag-out">Eat out tonight</span>
+    </a>
+
+    <a class="day-card highlight" href="#salmonday">
+      <div class="day-label">Day 5 · Sun May 24</div>
+      <div class="meal-name">Salmon Day</div>
+      <div class="meal-side">Smoked salmon board + Pan-seared salmon + Asparagus</div>
+      <span class="tag tag-us">Just the two of you</span>
+    </a>
+
+    <a class="day-card" href="#tbones">
+      <div class="day-label">Days 6–8 · Mon–Wed</div>
+      <div class="meal-name">T-Bone Steaks</div>
+      <div class="meal-side">+ Wedge Salad · Confirm date with guests</div>
+      <span class="tag tag-guests">4 people one night</span>
+    </a>
+
+    <a class="day-card highlight" href="#filet">
+      <div class="day-label">Day 9 · Thu May 28</div>
+      <div class="meal-name">Filet Mignon</div>
+      <div class="meal-side">+ Roasted Asparagus · Red Wine Pan Sauce</div>
+      <span class="tag tag-us">Last night</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     QUICK REFERENCE
+══════════════════════════════════════════════════════ -->
+<section id="quickref">
+  <h2>Quick Reference</h2>
+  <div class="qr-grid">
+
+    <div class="qr-card">
+      <h4>Pull Temperatures — Every Protein</h4>
+      <table class="temp-table">
+        <thead>
+          <tr>
+            <th>Protein</th>
+            <th>Pull Temp</th>
+            <th>After Rest</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Smash burger</td>
+            <td colspan="2">No thermometer needed</td>
+          </tr>
+          <tr>
+            <td>Chuck roast</td>
+            <td class="pull">195–205°F</td>
+            <td>Shreds with 2 forks</td>
+          </tr>
+          <tr>
+            <td>T-bone (med-rare)</td>
+            <td class="pull">125°F</td>
+            <td>130–132°F</td>
+          </tr>
+          <tr>
+            <td>T-bone (medium)</td>
+            <td class="pull">133°F</td>
+            <td>138–140°F</td>
+          </tr>
+          <tr>
+            <td>Smoked salmon</td>
+            <td class="pull">130–135°F</td>
+            <td>Amber, flakes cleanly</td>
+          </tr>
+          <tr>
+            <td>Pan-seared salmon</td>
+            <td class="pull">120–125°F</td>
+            <td>Just opaque at edges</td>
+          </tr>
+          <tr>
+            <td>Filet (oven phase)</td>
+            <td class="pull">110–115°F</td>
+            <td>130–135°F after sear+rest</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="qr-card">
+      <h4>Before You Cook — Every Time</h4>
+      <ul class="timing-list">
+        <li><span class="emoji">🥩</span> Chuck roast: pull from cooler <strong>30 min</strong> before searing</li>
+        <li><span class="emoji">🥩</span> T-bones: pull from cooler <strong>30 min</strong> before cooking</li>
+        <li><span class="emoji">🥩</span> Filet: pull from cooler <strong>15 min</strong> before</li>
+        <li><span class="emoji">🧂</span> All steaks: salt only before the sear — pepper after (prevents burning)</li>
+        <li><span class="emoji">🍳</span> Cast iron must be <strong>smoking hot</strong> before any protein goes in</li>
+        <li><span class="emoji">⏱</span> T-bones &amp; filet: <strong>rest 5–8 min</strong> after cooking — always</li>
+        <li><span class="emoji">🌲</span> Traeger to 150–170°F for salmon — "Super Smoke" mode if available</li>
+      </ul>
+    </div>
+
+    <div class="qr-card">
+      <h4>Wine Pairings</h4>
+      <ul class="timing-list">
+        <li><span class="emoji">🍷</span> <strong>Chuck roast:</strong> Pinot Noir or Merlot — braise with it, drink it with dinner</li>
+        <li><span class="emoji">🥂</span> <strong>Pan-seared salmon:</strong> Pinot Gris, Sancerre, or dry Rosé</li>
+        <li><span class="emoji">🍷</span> <strong>T-bones:</strong> Cabernet Sauvignon or Malbec</li>
+        <li><span class="emoji">🍷</span> <strong>Filet mignon:</strong> Pinot Noir or Burgundy (first choice), Merlot</li>
+      </ul>
+    </div>
+
+    <div class="qr-card">
+      <h4>Oven Temperatures</h4>
+      <ul class="timing-list">
+        <li><span class="emoji">🔥</span> <strong>Chuck roast braise:</strong> 275°F</li>
+        <li><span class="emoji">🔥</span> <strong>Roasted garlic:</strong> 375°F, 40 min in foil</li>
+        <li><span class="emoji">🔥</span> <strong>T-bones finish:</strong> 400°F</li>
+        <li><span class="emoji">🔥</span> <strong>Asparagus:</strong> 425°F, 10–12 min</li>
+        <li><span class="emoji">🔥</span> <strong>Filet oven phase:</strong> 225°F</li>
+        <li><span class="emoji">🌲</span> <strong>Traeger smoking:</strong> 150–170°F, alder or cherry pellets</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     COOLER STRATEGY
+══════════════════════════════════════════════════════ -->
+<section id="cooler">
+  <h2>Cooler &amp; Storage Strategy</h2>
+  <p style="color:var(--text-muted); font-size:13.5px; margin-bottom:1rem;">9 days of premium proteins — use in this order, most perishable first.</p>
+  <div class="recipe-block">
+    <table class="cooler-table">
+      <thead>
+        <tr>
+          <th>Protein</th>
+          <th>Use By</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Ground beef (burgers)</strong></td>
+          <td>Day 1 — Wed</td>
+          <td>Already planned. Use night you arrive.</td>
+        </tr>
+        <tr>
+          <td><strong>Salmon (pan-seared)</strong></td>
+          <td>Day 5 — Sun</td>
+          <td>Within 3–4 days of purchase. Sunday is fine.</td>
+        </tr>
+        <tr>
+          <td><strong>Salmon (smoking piece)</strong></td>
+          <td>Brined Sat, smoked Sun</td>
+          <td>Once smoked, keeps 5–7 days refrigerated.</td>
+        </tr>
+        <tr>
+          <td><strong>Chuck roast</strong></td>
+          <td>Day 2 — Thu</td>
+          <td>Use second day — perfect timing.</td>
+        </tr>
+        <tr>
+          <td><strong>T-bone steaks</strong></td>
+          <td>Days 6–8 (Mon–Wed)</td>
+          <td>Keep in coldest zone. Fine up to 5 days from purchase.</td>
+        </tr>
+        <tr>
+          <td><strong>Filet mignon</strong></td>
+          <td>Day 9 — Thu</td>
+          <td>Most delicate. Keep coldest. If unsure about freshness after 9 days, buy in Granby instead of Fort Collins.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--text-muted); margin-top:0.75rem; margin-bottom:0;">
+      Keep raw proteins in the bottom/coldest zone · Keep salmon separate from beef · Check cooler temp daily — under 40°F
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     COOK 1: SMASH BURGERS
+══════════════════════════════════════════════════════ -->
+<section id="burgers">
+  <div class="section-header">
+    <div class="section-number">1</div>
+    <div>
+      <h2 style="margin-bottom:0;">Smash Burgers</h2>
+      <div class="section-meta">Wed May 20 · Arrival Night · 20 min · Cast Iron Skillet</div>
+    </div>
+  </div>
+
+  <div class="recipe-block">
+    <p class="romantic-note">You just drove from Fort Collins. You're finally here. Simple food, cold drinks, and the cabin is yours for nine days.</p>
+
+    <h3>Ingredients <span style="font-weight:300; font-size:0.85rem;">(serves 2 — 2 burgers each)</span></h3>
+    <div class="ing-grid">
+      <ul>
+        <li>1 lb ground beef, 80/20</li>
+        <li>4 slices American cheese</li>
+        <li>4 hamburger buns</li>
+        <li>2 tbsp unsalted butter (bun toasting)</li>
+      </ul>
+      <ul>
+        <li>Kosher salt + fresh cracked pepper</li>
+        <li>Mayo, yellow mustard, pickles</li>
+        <li>Lettuce, tomato, sliced onion</li>
+      </ul>
+    </div>
+
+    <h3>Method</h3>
+    <ol class="steps">
+      <li>Divide beef into 4 equal balls (~3.75 oz). Do not overwork — balls should barely hold together.</li>
+      <li>Heat cast iron over medium-high 3–4 min until a water droplet vanishes instantly. Toast buns cut-side down in butter in a second pan; set aside.</li>
+      <li>Place 2 beef balls on the hot skillet. Within 2–3 seconds, <strong>smash down hard</strong> with a flat spatula (use parchment between spatula and beef).</li>
+      <li>Press to ¼" thick, ~4–5" wide. Season top immediately with salt and pepper.</li>
+      <li><strong>Do not touch for 90 seconds.</strong> This is where the crust forms.</li>
+      <li>Flip decisively. Lay a slice of American cheese on each patty immediately.</li>
+      <li>Cook 30 sec. Cover with a plate or lid for 15 sec to steam-melt the cheese. Remove.</li>
+      <li>Repeat for batch 2. Assemble and rest 1–2 min before eating.</li>
+    </ol>
+
+    <div class="temp-callout green">
+      <div class="temp-item">
+        <span class="label">Pan Temp</span>
+        <span class="value" style="color:var(--green);">400–500°F</span>
+        <span class="note">Water droplet vanishes instantly</span>
+      </div>
+      <div class="temp-item">
+        <span class="label">First Side</span>
+        <span class="value" style="color:var(--green);">90 sec</span>
+        <span class="note">Don't touch it</span>
+      </div>
+      <div class="temp-item">
+        <span class="label">Second Side</span>
+        <span class="value" style="color:var(--green);">30 sec</span>
+        <span class="note">+ 15 sec lid for cheese</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="recipe-block">
+    <h3>Side: Vinegar Coleslaw <span style="font-weight:300; font-size:0.85rem;">(serves 2)</span></h3>
+    <p style="font-size:13px; color:var(--text-muted);">Dressing can be made tonight at home. Dress the cabbage at the cabin on arrival — no cooking required.</p>
+    <div class="ing-grid">
+      <ul>
+        <li>3 cups pre-shredded cabbage + carrot mix</li>
+        <li>⅓ cup apple cider vinegar</li>
+        <li>2 tbsp granulated sugar</li>
+      </ul>
+      <ul>
+        <li>1 tsp kosher salt</li>
+        <li>½ tsp black pepper</li>
+        <li>2 tbsp water</li>
+      </ul>
+    </div>
+    <ol class="steps">
+      <li>Whisk vinegar, sugar, salt, pepper, and water until sugar dissolves.</li>
+      <li>Toss with cabbage and carrots until every strand is coated.</li>
+      <li>Let sit 15 min before serving — cabbage softens slightly.</li>
+      <li>Taste and adjust: more sugar if too sharp, more vinegar if too flat.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     COOK 2: CHUCK ROAST
+══════════════════════════════════════════════════════ -->
+<section id="chuckroast">
+  <div class="section-header">
+    <div class="section-number">2</div>
+    <div>
+      <h2 style="margin-bottom:0;">Braised Chuck Roast</h2>
+      <div class="section-meta">Thu May 21 · First Full Day · ~4 hrs · Dutch Oven</div>
+    </div>
+  </div>
+
+  <div class="recipe-block">
+    <p class="romantic-note">First full day in the mountains. The roast goes in at noon, the cabin fills with the smell of wine and herbs all afternoon, and dinner is ready when you are.</p>
+
+    <div class="timing-block">
+      <h4>Day-of Timing — Target 7 PM Dinner</h4>
+      <ol style="list-style:none; padding:0; font-size:13px;">
+        <li><span class="time">11:30 AM</span> Pull roast from cooler to come to room temp</li>
+        <li><span class="time">Noon</span> Sear roast, build braising base; into oven by 12:30 PM</li>
+        <li><span class="time">2:00 PM</span> Flip roast</li>
+        <li><span class="time">3:30–4 PM</span> Start checking temp — target 195–205°F</li>
+        <li><span class="time">4:00–4:30 PM</span> Roast done. Rest 10 min, shred, strain liquid</li>
+        <li><span class="time">5:30 PM</span> Roast garlic for mashed potatoes (40 min at 375°F)</li>
+        <li><span class="time">6:30 PM</span> Boil and mash potatoes</li>
+        <li><span class="time">7:00 PM</span> Dinner — open the wine</li>
+      </ol>
+    </div>
+
+    <h3>Ingredients <span style="font-weight:300; font-size:0.85rem;">(serves 2 + 2–3 leftover meals)</span></h3>
+    <div class="ing-grid">
+      <ul>
+        <li>3 lb boneless beef chuck roast (well-marbled)</li>
+        <li>3 tbsp olive oil</li>
+        <li>1 large yellow onion, rough chopped</li>
+        <li>2 large carrots, cut in 2" pieces</li>
+        <li>2 celery stalks, cut in 2" pieces</li>
+        <li>4–5 garlic cloves, smashed</li>
+        <li>2 tbsp tomato paste</li>
+      </ul>
+      <ul>
+        <li>1 cup red wine (same bottle you'll drink)</li>
+        <li>1½ cups beef stock</li>
+        <li>2 tbsp Worcestershire sauce</li>
+        <li>1 tbsp balsamic vinegar</li>
+        <li>1½ tsp dried thyme (or 3 sprigs fresh)</li>
+        <li>1 tsp dried rosemary · ½ tsp ground cumin</li>
+        <li>2 bay leaves · Kosher salt + pepper</li>
+      </ul>
+    </div>
+
+    <h3>Method</h3>
+    <ol class="steps">
+      <li>Remove roast from cooler 30 min ahead. Pat <strong>completely dry</strong> with paper towels — moisture kills the sear.</li>
+      <li>Preheat oven to 275°F. Heat Dutch oven over medium-high, add olive oil.</li>
+      <li>Sear roast — <strong>4 min per side, do not move it</strong> — until a deep brown crust forms. Remove to a plate.</li>
+      <li>Pour off all but 1 tbsp oil. Add onion, carrot, celery. Cook 3–4 min until slightly softened.</li>
+      <li>Add garlic, cook 30 sec. Add tomato paste, stir constantly 1 min to caramelize it.</li>
+      <li>Pour in wine — scrape up all the brown bits from the bottom. Reduce 1 min.</li>
+      <li>Add beef stock, Worcestershire, balsamic, bay leaves, herbs, cumin, salt, and pepper.</li>
+      <li>Nestle roast back in pot. Liquid should come halfway up the sides — not covering the meat.</li>
+      <li>Cover and place in 275°F oven. At 1.5 hours, flip the roast.</li>
+      <li>Continue braising 1.5–2 hrs more. Pull when internal temp hits 195–205°F and it shreds easily with two forks. If it resists, give it 20 more minutes.</li>
+      <li>Rest uncovered 10 min in pot. Transfer to cutting board, shred with two forks. Strain braising liquid; reserve ~2 cups for leftovers.</li>
+    </ol>
+
+    <div class="temp-callout">
+      <div class="temp-item">
+        <span class="label">Oven Temp</span>
+        <span class="value">275°F</span>
+        <span class="note">Low and slow</span>
+      </div>
+      <div class="temp-item">
+        <span class="label">Pull Temp</span>
+        <span class="value">195–205°F</span>
+        <span class="note">Shreds with 2 forks</span>
+      </div>
+      <div class="temp-item">
+        <span class="label">Total Time</span>
+        <span class="value">3–4 hrs</span>
+        <span class="note">Flip at 1.5 hrs</span>
+      </div>
+    </div>
+
+    <h4>Night 1 Plating</h4>
+    <div class="plating-note">Wide shallow bowl. Beef in the center, ladle ½ cup warm braising liquid over the top. Scatter soft braised carrots and onions around the edges. Finish with fresh flat-leaf parsley and a crack of pepper. Crusty bread on the side.</div>
+
+    <div class="wine-pairing">
+      <strong>Wine:</strong> Pinot Noir or Merlot — use the same bottle to braise and to drink with dinner.
+    </div>
+  </div>
+
+  <div class="recipe-block">
+    <h3>Side: Garlic Mashed Potatoes <span style="font-weight:300; font-size:0.85rem;">(serves 2)</span></h3>
+    <p style="font-size:13px; color:var(--text-muted);">Start the garlic roasting at 5:30 PM while the roast rests. Potatoes take 25 minutes total.</p>
+
+    <h4>Roasted Garlic (40 min — do this first)</h4>
+    <ul style="font-size:13.5px;">
+      <li>Cut the top ¼" off a whole garlic head to expose cloves. Drizzle with olive oil, pinch of salt.</li>
+      <li>Wrap in foil. Roast at 375°F for 40 min until cloves are golden and completely soft.</li>
+      <li>Cool 5 min, squeeze cloves into a bowl, mash into a paste with a fork.</li>
+    </ul>
+
+    <h4>Potatoes</h4>
+    <div class="ing-grid">
+      <ul>
+        <li>1.25 lbs Yukon Gold potatoes, peeled, cut in 1–1.5" chunks</li>
+        <li>3 tbsp unsalted butter, warmed</li>
+        <li>⅓ cup whole milk or half-and-half, <strong>warmed</strong></li>
+      </ul>
+      <ul>
+        <li>2 tbsp heavy cream or sour cream (optional)</li>
+        <li>½ tsp kosher salt · ¼ tsp pepper</li>
+        <li>Fresh chives for finishing</li>
+      </ul>
+    </div>
+
+    <ol class="steps">
+      <li>Start potatoes in <strong>cold salted water</strong>. Bring to boil, reduce to simmer, cook 18–22 min until a knife slides through with zero resistance.</li>
+      <li>Drain. Return to the warm empty pot, put the lid on, let steam-dry 1 min. This removes excess moisture — the #1 cause of gluey mashed potatoes.</li>
+      <li>In a small pan, warm the butter + milk + roasted garlic paste together until steaming.</li>
+      <li>Mash potatoes with a hand masher or ricer. <strong>Never use a blender or electric mixer</strong> — they make them gluey.</li>
+      <li>Fold in warm dairy in 3 additions. Stop as soon as it's creamy. Season, fold in chives. Serve within 15 min.</li>
+    </ol>
+    <p style="font-size:12px; color:var(--text-muted);">To keep warm: cover and set on lowest heat with a splash of cream stirred in every 10 min.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     LEFTOVER MEALS
+══════════════════════════════════════════════════════ -->
+<section id="leftovers">
+  <div class="section-header">
+    <div class="section-number" style="background:var(--gold-light); color:var(--brown);">↩</div>
+    <div>
+      <h2 style="margin-bottom:0;">Leftover Meals</h2>
+      <div class="section-meta">From the Chuck Roast · Fri May 22 + Sat May 23 Brunch</div>
+    </div>
+  </div>
+
+  <div class="recipe-block">
+    <h3>Friday Night: Pulled Beef Tacos</h3>
+    <p class="romantic-note">Casual Friday. The cabin, the mountains outside, good tacos and maybe a margarita.</p>
+
+    <div class="ing-grid">
+      <ul>
+        <li>~¾ lb shredded chuck roast</li>
+        <li>½ cup braising liquid (reserved)</li>
+        <li>8 small corn or flour tortillas</li>
+        <li>2 limes, cut into wedges</li>
+      </ul>
+      <ul>
+        <li>Shredded cabbage · diced white onion</li>
+        <li>Jalapeño · fresh cilantro · sour cream</li>
+        <li>Cotija cheese (if you grabbed some)</li>
+        <li>Salsa or hot sauce</li>
+      </ul>
+    </div>
+
+    <ol class="steps">
+      <li>Heat shredded beef + braising liquid in a skillet over medium, 5–7 min until steaming.</li>
+      <li><em>Optional crunch:</em> Transfer to a dry cast iron on medium-high for 2–3 min to caramelize the edges. Break up slightly as it crisps.</li>
+      <li>Warm tortillas directly over the gas flame 15–20 sec per side, or in a dry skillet.</li>
+      <li>Assemble, squeeze lime over each taco.</li>
+    </ol>
+  </div>
+
+  <div class="recipe-block">
+    <h3>Saturday Brunch: Beef Hash</h3>
+    <p class="romantic-note">A slow Saturday morning. No agenda — just crispy potatoes, eggs, and whatever's left of the coffee. Salmon brine starts at 6 PM tonight.</p>
+
+    <div class="ing-grid">
+      <ul>
+        <li>~¾ lb shredded chuck roast</li>
+        <li>1.5 lbs potatoes, cut in ½" cubes (boil night before and chill)</li>
+        <li>1 medium onion, finely diced</li>
+        <li>3 tbsp oil or butter</li>
+      </ul>
+      <ul>
+        <li>Kosher salt + pepper</li>
+        <li>1 tsp Worcestershire sauce (optional)</li>
+        <li>4 eggs (2 each)</li>
+        <li>Fresh parsley or chives for finishing</li>
+      </ul>
+    </div>
+
+    <ol class="steps">
+      <li>Heat 1.5 tbsp oil in large cast iron over medium-high. Add potatoes in a <strong>single layer — don't stir for 3–4 min</strong> until golden and crispy on the bottom.</li>
+      <li>Stir, let cook another 2–3 min. Push to the sides.</li>
+      <li>Add remaining oil to center. Add diced onion, cook 2 min until softened.</li>
+      <li>Add shredded beef + Worcestershire. Toss everything together, cook 3–4 min until beef is warm and crispy bits form throughout.</li>
+      <li>Make 4 small wells. Crack an egg into each well (or fry separately in a second pan). Cover and cook to your preferred doneness.</li>
+      <li>Garnish with fresh parsley or chives.</li>
+    </ol>
+    <p style="font-size:12px; color:var(--text-muted); margin-top:0.5rem;">
+      <strong>Tonight at 6 PM:</strong> Mix the salmon brine (10 min). Submerge fish, refrigerate. You're done until Sunday morning.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     COOK 3: T-BONE STEAKS
+══════════════════════════════════════════════════════ -->
+<section id="tbones">
+  <div class="section-header">
+    <div class="section-number">3</div>
+    <div>
+      <h2 style="margin-bottom:0;">T-Bone Steaks</h2>
+      <div class="section-meta">Mon–Wed May 25–27 · Confirm Date with Guests · 4 People · Cast Iron + Oven</div>
+    </div>
+  </div>
+
+  <div class="recipe-block">
+    <p class="romantic-note">The one group night. Make the compound butter before guests arrive — it needs to be cold. Everything else comes together fast.</p>
+
+    <div class="timing-block">
+      <h4>Day-of Timing — Target 7 PM Dinner</h4>
+      <ol style="list-style:none; padding:0; font-size:13px;">
+        <li><span class="time">Afternoon</span> Make blue cheese dressing · prep wedge salad toppings (bacon, tomatoes, onion) · refrigerate</li>
+        <li><span class="time">6:00 PM</span> Pull steaks from fridge. Preheat oven to 400°F.</li>
+        <li><span class="time">6:30 PM</span> Pat steaks dry, salt all sides, heat cast iron until smoking</li>
+        <li><span class="time">6:40 PM</span> Sear batch 1 (2 steaks) → into oven. Sear batch 2 while batch 1 finishes</li>
+        <li><span class="time">6:55 PM</span> Both batches out of oven, resting under foil, butter baste</li>
+        <li><span class="time">7:00 PM</span> Assemble wedge salads (5 min while steaks rest) · serve</li>
+      </ol>
+    </div>
+
+    <h3>Ingredients <span style="font-weight:300; font-size:0.85rem;">(serves 4)</span></h3>
+    <div class="ing-grid">
+      <ul>
+        <li>4 T-bone steaks, 1–1.5" thick</li>
+        <li>Kosher salt + fresh cracked pepper</li>
+        <li>1 tbsp neutral oil (avocado or canola)</li>
+        <li>4 tbsp unsalted butter</li>
+      </ul>
+      <ul>
+        <li>4 sprigs fresh thyme</li>
+        <li>4 garlic cloves, smashed</li>
+      </ul>
+    </div>
+
+    <h3>Garlic Herb Compound Butter <span style="font-weight:300; font-size:0.85rem;">(make tonight in Fort Collins — or the morning of)</span></h3>
+    <ul style="font-size:13.5px;">
+      <li>4 tbsp softened unsalted butter</li>
+      <li>2 garlic cloves, minced very fine</li>
+      <li>1 tbsp fresh flat-leaf parsley, minced</li>
+      <li>1 tsp fresh thyme leaves</li>
+      <li>Zest of ½ lemon · pinch of fleur de sel · fresh cracked pepper</li>
+    </ul>
+    <p style="font-size:13px;">Combine, roll in plastic wrap into a log, refrigerate until firm. Slice into coins to serve.</p>
+
+    <h3>Method — Cast Iron Sear → 400°F Oven</h3>
+    <ol class="steps">
+      <li>Preheat oven to 400°F. Pull steaks from cooler 30 min before cooking. Pat completely dry.</li>
+      <li>Season generously on all sides with kosher salt only — <strong>pepper goes on after the sear</strong>, not before (it burns at high heat).</li>
+      <li>Heat cast iron over high heat 4–5 min until it begins to smoke. Add 1 tbsp neutral oil.</li>
+      <li>Place 2 steaks in pan — don't crowd. Sear <strong>2–3 min without moving</strong> until a deep brown crust forms.</li>
+      <li>Flip. Sear second side 2 min. Stand steak on its bone edge for 30 sec to render the fat strip.</li>
+      <li>Transfer the entire cast iron skillet to the 400°F oven. Cook <strong>4–6 min</strong> until thermometer reads target temp.</li>
+      <li>Remove skillet from oven. Add butter, thyme, and smashed garlic to the hot pan. Tilt pan and baste steaks with foaming butter for 30–45 sec.</li>
+      <li>Season tops with fresh cracked pepper. Transfer to warm plate, tent loosely with foil. <strong>Rest 5–8 min minimum.</strong></li>
+      <li>Repeat for steaks 3 and 4. Plate with a coin of compound butter melting on top.</li>
+    </ol>
+
+    <div class="temp-callout">
+      <div class="temp-item">
+        <span class="label">Oven Finish</span>
+        <span class="value">400°F</span>
+        <span class="note">4–6 min</span>
+      </div>
+      <div class="temp-item">
+        <span class="label">Pull (Med-Rare)</span>
+        <span class="value">125°F</span>
+        <span class="note">Finishes at 130–132°F</span>
+      </div>
+      <div class="temp-item">
+        <span class="label">Pull (Medium)</span>
+        <span class="value">133°F</span>
+        <span class="note">Finishes at 138–140°F</span>
+      </div>
+      <div class="temp-item">
+        <span class="label">Rest</span>
+        <span class="value">5–8 min</span>
+        <span class="note">Always. Under foil.</span>
+      </div>
+    </div>
+
+    <p style="font-size:13px; color:var(--text-muted);">Ask guests their preference. Cook to the most "done" preference; those who want medium-rare go in last.</p>
+
+    <div class="wine-pairing">
+      <strong>Wine:</strong> Cabernet Sauvignon or Malbec — something with grip and structure to stand up to the bone-in beef.
+    </div>
+  </div>
+
+  <div class="recipe-block">
+    <h3>Side: Wedge Salad <span style="font-weight:300; font-size:0.85rem;">(serves 4)</span></h3>
+    <p style="font-size:13px; color:var(--text-muted);">Make the dressing and prep toppings while steaks are in the oven. Assemble during the 5-min rest — perfect timing.</p>
+
+    <h4>Blue Cheese Dressing (make ahead — even the night before)</h4>
+    <div class="ing-grid">
+      <ul>
+        <li>½ cup mayonnaise</li>
+        <li>¼ cup sour cream</li>
+        <li>2 tbsp buttermilk or whole milk</li>
+        <li>2 oz crumbled blue cheese</li>
+      </ul>
+      <ul>
+        <li>1 tsp apple cider vinegar</li>
+        <li>½ tsp garlic powder</li>
+        <li>Salt and pepper to taste</li>
+      </ul>
+    </div>
+    <p style="font-size:13px;">Whisk all together. It should be tangy and rich. Refrigerate until ready. Makes enough for 4.</p>
+
+    <h4>Salad</h4>
+    <div class="ing-grid">
+      <ul>
+        <li>1 head iceberg lettuce, quartered through the core (core holds wedge together)</li>
+        <li>4 oz crumbled blue cheese, divided</li>
+        <li>6 strips bacon, cooked crispy and crumbled</li>
+      </ul>
+      <ul>
+        <li>1 cup cherry tomatoes, halved</li>
+        <li>¼ red onion, very thinly sliced</li>
+        <li>2 tbsp fresh chives, minced</li>
+      </ul>
+    </div>
+
+    <ol class="steps">
+      <li>Cook bacon in cast iron over medium heat 8–10 min until deeply crispy. Drain, crumble when cool.</li>
+      <li>Place each lettuce wedge cut-side up on a plate. Spoon dressing generously over each wedge.</li>
+      <li>Top with crumbled bacon, halved tomatoes, remaining blue cheese, red onion, and chives. Serve immediately.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     COOK 4: SALMON DAY
+══════════════════════════════════════════════════════ -->
+<section id="salmonday">
+  <div class="section-header">
+    <div class="section-number">4</div>
+    <div>
+      <h2 style="margin-bottom:0;">Salmon Day</h2>
+      <div class="section-meta">Sat May 23 (Brine) → Sun May 24 (Smoke + Dinner) · Traeger + Cast Iron</div>
+    </div>
+  </div>
+
+  <div class="recipe-block">
+    <h3>4a — Candied Smoked Salmon</h3>
+    <p class="romantic-note">The Traeger does the work all morning. You just set out the board in the afternoon and pour a drink.</p>
+
+    <h4>The Brine <span style="font-weight:300;">(Saturday ~6 PM — 10 min)</span></h4>
+    <div class="ing-grid">
+      <ul>
+        <li>8 cups water</li>
+        <li>1 cup soy sauce</li>
+        <li>¾ cup brown sugar, packed</li>
+        <li>½ cup kosher salt</li>
+      </ul>
+      <ul>
+        <li>4 garlic cloves, smashed</li>
+        <li>1 tsp fresh ginger, grated (or ½ tsp ground)</li>
+        <li>3 bay leaves</li>
+        <li>Optional: 1 tbsp black pepper, pinch red pepper flakes</li>
+      </ul>
+    </div>
+    <ol class="steps">
+      <li>Combine all brine ingredients. Stir until salt and sugar fully dissolve.</li>
+      <li>Cool completely before using (don't put warm brine on fish).</li>
+      <li>Cut 1 lb salmon fillet (skin-on, pin bones removed) into 2–3" pieces.</li>
+      <li>Submerge salmon in brine, weigh down with a plate. Refrigerate <strong>8–12 hours</strong> — overnight is ideal.</li>
+    </ol>
+
+    <h4>Pellicle Formation <span style="font-weight:300;">(Sunday 7:30–9:30 AM — do not skip)</span></h4>
+    <ol class="steps">
+      <li>Remove salmon from brine. Rinse under cold water. Pat <strong>completely dry</strong>.</li>
+      <li>Place skin-side down on a wire rack. Do NOT stack pieces.</li>
+      <li>Position a fan to blow air gently across the surface, or place near an open window.</li>
+      <li>Dry for <strong>2 full hours</strong> until the surface is tacky and slightly glossy. This is the pellicle — what smoke sticks to. Rushing this step = uneven smoke coverage.</li>
+    </ol>
+
+    <h4>Smoking on Traeger</h4>
+    <ol class="steps">
+      <li>Preheat Traeger to <strong>150–170°F</strong> (use Super Smoke mode if available). Wood: alder (traditional), cherry, or apple.</li>
+      <li>Place salmon skin-side down on grates. Start the timer.</li>
+      <li><strong>Do not open the lid</strong> during the first 2 hours.</li>
+      <li>Check temp at 1:00–1:30 PM. Done when internal temp reads 130–135°F — flesh should be amber-colored, firm, and flake cleanly.</li>
+    </ol>
+
+    <div class="temp-callout green">
+      <div class="temp-item">
+        <span class="label">Traeger Temp</span>
+        <span class="value" style="color:var(--green);">150–170°F</span>
+        <span class="note">Low and slow</span>
+      </div>
+      <div class="temp-item">
+        <span class="label">Smoke Time</span>
+        <span class="value" style="color:var(--green);">3–4 hrs</span>
+        <span class="note">No lid first 2 hrs</span>
+      </div>
+      <div class="temp-item">
+        <span class="label">Pull Temp</span>
+        <span class="value" style="color:var(--green);">130–135°F</span>
+        <span class="note">Amber, flakes cleanly</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="recipe-block">
+    <h3>The Smoked Salmon Board <span style="font-weight:300; font-size:0.85rem;">(Sunday ~2 PM)</span></h3>
+    <p class="romantic-note">After a morning of tending the smoke together, this is your afternoon. Set it out, graze, pour something cold.</p>
+
+    <div class="ing-grid">
+      <ul>
+        <li>All the just-smoked candied salmon, broken into rustic pieces</li>
+        <li>4 oz cream cheese, softened to room temp</li>
+        <li>1 box water crackers or Triscuits</li>
+        <li>2 tbsp capers, drained</li>
+      </ul>
+      <ul>
+        <li>¼ small red onion, sliced paper-thin</li>
+        <li>4–6 sprigs fresh dill</li>
+        <li>1 lemon, cut in wedges</li>
+        <li>Optional: sliced cucumber, everything bagel seasoning on the cream cheese</li>
+      </ul>
+    </div>
+
+    <ol class="steps">
+      <li>Let smoked salmon rest at room temp 30 min after pulling from the Traeger.</li>
+      <li>Spread cream cheese onto a board or into a small bowl; drag a spoon through to create swoops.</li>
+      <li>Break salmon into irregular pieces, arrange alongside the cream cheese.</li>
+      <li>Scatter capers, red onion slices, and dill around the board. Add crackers and lemon wedges.</li>
+      <li>Serve at room temperature — cold cream cheese is harder to spread and less flavorful.</li>
+    </ol>
+    <p style="font-size:13px; color:var(--text-muted);"><strong>How to eat it:</strong> Cream cheese on a cracker, piece of salmon, a few capers, sliver of red onion, squeeze of lemon.</p>
+  </div>
+
+  <div class="recipe-block">
+    <h3>4b — Pan-Seared Salmon Dinner <span style="font-weight:300; font-size:0.85rem;">(Sunday ~6 PM)</span></h3>
+    <p class="romantic-note">After a full day of smoke and snacking together, dinner is 10 minutes. Crispy skin, lemon butter, a cold glass of something white.</p>
+
+    <h4>Ingredients <span style="font-weight:300;">(serves 2)</span></h4>
+    <div class="ing-grid">
+      <ul>
+        <li>2 salmon fillets, skin-on, 6–8 oz each</li>
+        <li>1 tbsp neutral oil</li>
+        <li>2 tbsp unsalted butter</li>
+        <li>2 garlic cloves, smashed</li>
+        <li>2 sprigs fresh dill or thyme · 1 lemon</li>
+      </ul>
+      <ul>
+        <li><strong>Lemon Dill Butter Sauce:</strong></li>
+        <li>3 tbsp cold unsalted butter, cubed</li>
+        <li>1 shallot, minced</li>
+        <li>1 tbsp fresh lemon juice</li>
+        <li>1 tbsp fresh dill, chopped · 1 tsp parsley</li>
+      </ul>
+    </div>
+
+    <ol class="steps">
+      <li>Pat fillets completely dry. Season flesh side with salt and pepper.</li>
+      <li>Heat cast iron over medium-high until very hot, ~3 min. Add oil.</li>
+      <li>Place salmon <strong>skin-side down</strong>. Press gently with spatula for 10 sec to prevent curling.</li>
+      <li>Cook skin-side down <strong>4–5 min without moving</strong> — skin will release naturally when ready and be crispy.</li>
+      <li>Flip. Add butter, garlic, and dill/thyme to pan. Baste with foaming butter 1–2 min.</li>
+      <li>Pull at <strong>120–125°F</strong> internal — just opaque at edges, slightly translucent at center. Rest 2 min.</li>
+    </ol>
+
+    <ol class="steps" style="counter-reset:step-counter 6;">
+      <li><strong>Lemon dill sauce (while salmon rests):</strong> Add shallot to same pan over medium, cook 1 min. Add lemon juice, scrape up any bits. Swirl in cold butter cubes one at a time until emulsified and glossy. Stir in dill and parsley. Season.</li>
+    </ol>
+
+    <div class="temp-callout">
+      <div class="temp-item">
+        <span class="label">Skin Side Down</span>
+        <span class="value">4–5 min</span>
+        <span class="note">Do not move it</span>
+      </div>
+      <div class="temp-item">
+        <span class="label">Pull Temp</span>
+        <span class="value">120–125°F</span>
+        <span class="note">Slightly translucent center</span>
+      </div>
+    </div>
+
+    <div class="plating-note">Skin-side up on a warm plate. Spoon lemon dill sauce in a pool alongside — not over the skin (keeps it crispy). Asparagus fanned next to it.</div>
+
+    <div class="wine-pairing">
+      <strong>Wine:</strong> Pinot Gris, Sancerre, or a dry Rosé — something crisp and cold.
+    </div>
+
+    <h4>Side: Roasted Asparagus <span style="font-weight:300;">(serves 2)</span></h4>
+    <ul style="font-size:13.5px;">
+      <li>1 bunch asparagus (~1 lb), woody ends snapped off</li>
+      <li>1.5 tbsp olive oil · ½ tsp kosher salt · ¼ tsp cracked pepper · ½ lemon</li>
+    </ul>
+    <ol class="steps">
+      <li>Snap woody ends off each spear (bend — it breaks at the natural point). Toss on a sheet pan with oil, salt, pepper in a single layer.</li>
+      <li>Roast at 425°F for 10–12 min until tips are lightly caramelized and spears are tender-crisp.</li>
+      <li>Squeeze lemon over immediately before serving.</li>
+    </ol>
+    <p style="font-size:12px; color:var(--text-muted);">Same recipe used for Filet Mignon night — buy 2 bunches total.</p>
+  </div>
+
+  <!-- SMOKE DAY TIMELINE -->
+  <div class="recipe-block">
+    <h3>Smoke Day Full Timeline</h3>
+    <div class="smoke-timeline">
+      <div class="smoke-day-divider" style="position:relative; left:-2rem; width:calc(100% + 2rem);">── Saturday Evening ──</div>
+
+      <div class="smoke-event key">
+        <span class="stime">6:00 PM</span>
+        <span class="sdesc">Mix the brine — water, soy, brown sugar, salt, aromatics. Stir until dissolved.</span>
+        <span class="snote">Cool to room temp before submerging fish (~45–60 min).</span>
+      </div>
+      <div class="smoke-event">
+        <span class="stime">7:00–8 PM</span>
+        <span class="sdesc">Submerge salmon in cooled brine. Weigh down with a plate. Refrigerate.</span>
+        <span class="snote">Go enjoy your Saturday evening. You're done until morning.</span>
+      </div>
+
+      <div class="smoke-day-divider" style="position:relative; left:-2rem; width:calc(100% + 2rem);">── Sunday Morning ──</div>
+
+      <div class="smoke-event key">
+        <span class="stime">7:00–7:30 AM</span>
+        <span class="sdesc">Pull salmon from brine. Rinse under cold water. Pat completely dry.</span>
+      </div>
+      <div class="smoke-event key">
+        <span class="stime">7:30 AM</span>
+        <span class="sdesc">Set salmon on wire rack, skin-side down. Fan blowing over the surface.</span>
+        <span class="snote">2 full hours minimum. Surface must be tacky and slightly dry — don't rush this.</span>
+      </div>
+      <div class="smoke-event">
+        <span class="stime">9:00 AM</span>
+        <span class="sdesc">Fire up Traeger. Preheat to 150–170°F. Fill hopper with alder or cherry pellets.</span>
+      </div>
+      <div class="smoke-event key">
+        <span class="stime">9:30 AM</span>
+        <span class="sdesc">Place salmon skin-side down on grates. Start the timer.</span>
+        <span class="snote">Do not open the lid for the first 2 hours.</span>
+      </div>
+      <div class="smoke-event">
+        <span class="stime">11:30 AM</span>
+        <span class="sdesc">Optional temp check — looking for ~115–120°F at this point.</span>
+      </div>
+      <div class="smoke-event key">
+        <span class="stime">1:00–1:30 PM</span>
+        <span class="sdesc">Check temp: target 130–135°F. Amber color, firm, flakes cleanly. Pull when ready.</span>
+      </div>
+      <div class="smoke-event">
+        <span class="stime">1:30 PM</span>
+        <span class="sdesc">Remove salmon from Traeger. Rest at room temperature 30 min.</span>
+      </div>
+      <div class="smoke-event key">
+        <span class="stime">2:00 PM</span>
+        <span class="sdesc">Build the smoked salmon board. Set out and graze.</span>
+        <span class="snote">Cream cheese, crackers, capers, red onion, dill, lemon wedges.</span>
+      </div>
+
+      <div class="smoke-day-divider" style="position:relative; left:-2rem; width:calc(100% + 2rem);">── Sunday Evening ──</div>
+
+      <div class="smoke-event">
+        <span class="stime">5:00 PM</span>
+        <span class="sdesc">Pull dinner salmon fillets from cooler. Trim asparagus.</span>
+      </div>
+      <div class="smoke-event">
+        <span class="stime">5:30 PM</span>
+        <span class="sdesc">Preheat oven to 425°F for asparagus. Roast asparagus 10–12 min.</span>
+      </div>
+      <div class="smoke-event key">
+        <span class="stime">5:45 PM</span>
+        <span class="sdesc">Heat cast iron for pan-seared salmon. Cook and plate.</span>
+      </div>
+      <div class="smoke-event">
+        <span class="stime">6:00 PM</span>
+        <span class="sdesc">Dinner. Open a cold white wine.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     COOK 5: FILET MIGNON
+══════════════════════════════════════════════════════ -->
+<section id="filet">
+  <div class="section-header">
+    <div class="section-number">5</div>
+    <div>
+      <h2 style="margin-bottom:0;">Filet Mignon</h2>
+      <div class="section-meta">Thu May 28 · Last Night · Reverse Sear · Red Wine Pan Sauce</div>
+    </div>
+  </div>
+
+  <div class="recipe-block">
+    <p class="romantic-note">Last night. Just the two of you. Nine days in the mountains, ending the way it should — with something worth the occasion. Make it count.</p>
+
+    <h3>Ingredients <span style="font-weight:300; font-size:0.85rem;">(serves 2)</span></h3>
+    <div class="ing-grid">
+      <ul>
+        <li>2 filet mignon, 6–8 oz each, 1.5–2" thick</li>
+        <li>Kosher salt + fresh cracked pepper</li>
+        <li>1 tbsp neutral high-heat oil</li>
+        <li>2 tbsp unsalted butter + 2 sprigs thyme (basting)</li>
+      </ul>
+      <ul>
+        <li><strong>Red Wine Pan Sauce:</strong></li>
+        <li>2 shallots, minced · 1 garlic clove, smashed</li>
+        <li>¼ cup dry red wine (Pinot Noir or Merlot)</li>
+        <li>1 cup beef stock</li>
+        <li>2–3 tbsp cold unsalted butter, cubed</li>
+        <li>1–2 sprigs fresh thyme · ½ tsp Dijon mustard (optional)</li>
+      </ul>
+    </div>
+
+    <h3>Compound Butter <span style="font-weight:300; font-size:0.85rem;">(made tonight in Fort Collins)</span></h3>
+    <ul style="font-size:13.5px; margin-bottom:0.5rem;">
+      <li>3 tbsp softened unsalted butter · 1 garlic clove, minced</li>
+      <li>1 tbsp fresh flat-leaf parsley, minced · ½ tsp fresh thyme</li>
+      <li>Zest of ½ lemon · fleur de sel + fresh cracked pepper</li>
+    </ul>
+    <p style="font-size:13px;">Combine, roll in plastic wrap into a log, refrigerate until firm. Slice coins to serve.</p>
+
+    <h3>Method — Reverse Sear</h3>
+    <ol class="steps">
+      <li>Remove steaks from cooler 15 min ahead. Pat dry. Season generously with kosher salt all over. Pepper goes on <strong>after</strong> the sear.</li>
+      <li>Preheat oven to <strong>225°F</strong>. Place cast iron in oven as it preheats.</li>
+      <li>Place steaks on a rack over a sheet pan. Insert thermometer probe if you have one.</li>
+      <li>Bake at 225°F until internal temp reads <strong>110–115°F</strong> — approximately 25–35 min depending on thickness. Check at 20 min for thin cuts.</li>
+      <li>Remove from oven. Rest 2–3 min while heating cast iron on stovetop over high until smoking.</li>
+      <li>Add 1 tbsp neutral oil to the screaming-hot skillet. Place steaks in pan.</li>
+      <li>Sear 1.5–2 min per side — flip every 15–20 sec for a perfectly even crust.</li>
+      <li>Add 2 tbsp butter, thyme, and an optional smashed garlic clove. Tilt pan and <strong>baste continuously</strong> for 30–45 sec.</li>
+      <li>Season tops with fresh cracked pepper. Transfer to a warm plate. <strong>Tent loosely with foil. Rest 5–8 min minimum.</strong></li>
+    </ol>
+
+    <div class="temp-callout">
+      <div class="temp-item">
+        <span class="label">Oven Temp</span>
+        <span class="value">225°F</span>
+        <span class="note">Low &amp; slow</span>
+      </div>
+      <div class="temp-item">
+        <span class="label">Pull from Oven</span>
+        <span class="value">110–115°F</span>
+        <span class="note">Then sear</span>
+      </div>
+      <div class="temp-item">
+        <span class="label">Final Temp</span>
+        <span class="value">130–135°F</span>
+        <span class="note">After sear + rest</span>
+      </div>
+      <div class="temp-item">
+        <span class="label">Rest</span>
+        <span class="value">5–8 min</span>
+        <span class="note">Tent with foil</span>
+      </div>
+    </div>
+
+    <h3>Red Wine Pan Sauce <span style="font-weight:300; font-size:0.85rem;">(while steaks rest)</span></h3>
+    <ol class="steps">
+      <li><strong>Do not wipe out the pan</strong> — the brown bits on the bottom are flavor.</li>
+      <li>Add minced shallots to the hot pan over medium. Sauté 1–2 min until softened.</li>
+      <li>Add thyme and garlic; cook 30 sec.</li>
+      <li>Deglaze with ¼ cup red wine — scrape the fond off the pan bottom with a wooden spoon.</li>
+      <li>Add beef stock. Bring to a simmer, reduce by half over 5–7 min (~½ cup remaining).</li>
+      <li>Remove from heat. Whisk in cold butter cubes one at a time until sauce is silky and glossy.</li>
+      <li>Add Dijon if using. Season with salt and pepper. Spoon over rested steaks immediately.</li>
+    </ol>
+
+    <div class="plating-note">Steak slightly off-center on a warm plate. Red wine sauce spooned in a crescent around it. Asparagus leaning against the steak. Shaved Parmesan over the asparagus. A small coin of compound butter melting on top of the filet. Open the wine 20 min before dinner to let it breathe.</div>
+
+    <div class="wine-pairing">
+      <strong>Wine:</strong> Pinot Noir or Burgundy (first choice for filet's delicate flavor), Merlot as a strong second. Open it 20 min before dinner.
+    </div>
+  </div>
+
+  <div class="recipe-block">
+    <h3>Side: Roasted Asparagus with Parmesan <span style="font-weight:300; font-size:0.85rem;">(serves 2)</span></h3>
+    <ul style="font-size:13.5px;">
+      <li>1 bunch asparagus (~1 lb), woody ends snapped off</li>
+      <li>1.5 tbsp olive oil · ½ tsp kosher salt · ¼ tsp cracked pepper</li>
+      <li>½ lemon · Parmesan, shaved or grated</li>
+    </ul>
+    <ol class="steps">
+      <li>Toss asparagus with oil, salt, pepper on a sheet pan. Single layer.</li>
+      <li><strong>Timing:</strong> The 225°F oven is too low for asparagus. After the filets come out, crank oven to 425°F. Roast asparagus 10–12 min while steaks sear and rest.</li>
+      <li>Squeeze lemon over. Finish with shaved Parmesan before plating.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     TROUBLESHOOTING
+══════════════════════════════════════════════════════ -->
+<section id="troubleshoot">
+  <h2>Troubleshooting</h2>
+  <p style="color:var(--text-muted); font-size:13.5px; margin-bottom:1rem;">Tap a cook to expand. Tap a question for the fix.</p>
+
+  <!-- SMASH BURGERS -->
+  <details class="trouble-group">
+    <summary>🍔 Smash Burgers</summary>
+    <details class="trouble-qa trouble-item">
+      <summary class="trouble-q">Cast iron not hot enough</summary>
+      <div class="trouble-a">A water droplet should vanish instantly — if it just sizzles and sits there, give it 2 more minutes. A pan that's not screaming hot will steam the patties instead of crust them, and the whole technique falls apart.</div>
+    </details>
+  </details>
+
+  <!-- CHUCK ROAST -->
+  <details class="trouble-group">
+    <summary>🥩 Chuck Roast</summary>
+    <details class="trouble-qa trouble-item">
+      <summary class="trouble-q">Roast won't shred at 3 hours</summary>
+      <div class="trouble-a">Put it back. Cover, return to 275°F for 20–30 min increments. It's not done until two forks pull it apart with almost no resistance. Under-braised roast is tough; more time only makes it more tender.</div>
+    </details>
+    <details class="trouble-qa trouble-item">
+      <summary class="trouble-q">Mashed potatoes are gluey or pasty</summary>
+      <div class="trouble-a">Over-mixed, or cold dairy was added. You can't fully fix gluey potatoes, but folding in warm cream and a knob of butter will help. Next time: steam-dry after draining, warm the dairy before adding, and stop folding as soon as it's creamy.</div>
+    </details>
+  </details>
+
+  <!-- SALMON DAY -->
+  <details class="trouble-group">
+    <summary>🐟 Salmon Day</summary>
+    <details class="trouble-qa trouble-item">
+      <summary class="trouble-q">Pellicle isn't forming after 2 hours</summary>
+      <div class="trouble-a">Give it another 30–60 min. If the cabin is humid, crack a window or move the fan closer. The surface needs to feel tacky and dry to the touch — not wet or shiny. Smoking without a pellicle won't ruin it, smoke just won't adhere as evenly.</div>
+    </details>
+    <details class="trouble-qa trouble-item">
+      <summary class="trouble-q">Smoked salmon temp rising too fast</summary>
+      <div class="trouble-a">Check your Traeger — it may be running hot. Drop it to 150°F and crack the lid briefly to bleed off heat. The slow 3–4 hour smoke is what builds the candied exterior; rushing it produces drier, less flavorful fish.</div>
+    </details>
+  </details>
+
+  <!-- T-BONES -->
+  <details class="trouble-group">
+    <summary>🥩 T-Bone Steaks</summary>
+    <details class="trouble-qa trouble-item">
+      <summary class="trouble-q">Steaks cooking unevenly (one side more done)</summary>
+      <div class="trouble-a">T-bones are naturally uneven — the strip side cooks faster than the tenderloin side. Rotate the pan in the oven halfway through, or tent the tenderloin side with a small piece of foil while the strip catches up.</div>
+    </details>
+    <details class="trouble-qa trouble-item">
+      <summary class="trouble-q">Pan sauce looks greasy and separated</summary>
+      <div class="trouble-a">Remove from heat immediately. Add 1 tbsp cold water and whisk hard. Or drop in one more cube of cold butter and swirl — cold butter re-emulsifies a broken sauce most of the time.</div>
+    </details>
+  </details>
+
+  <!-- FILET MIGNON -->
+  <details class="trouble-group">
+    <summary>🥩 Filet Mignon</summary>
+    <details class="trouble-qa trouble-item">
+      <summary class="trouble-q">Filet hit temp too fast in the 225°F oven</summary>
+      <div class="trouble-a">The oven is forgiving but thinner cuts (under 1.5") rise fast — check at 20 min next time. If you pulled too soon, the final sear will make up some ground. If overcooked, serve with extra pan sauce — it rescues a lot.</div>
+    </details>
+    <details class="trouble-qa trouble-item">
+      <summary class="trouble-q">Pan sauce looks greasy and separated</summary>
+      <div class="trouble-a">Remove from heat immediately. Add 1 tbsp cold water and whisk hard. Or drop in one more cube of cold butter and swirl — cold butter re-emulsifies a broken sauce most of the time.</div>
+    </details>
+  </details>
+
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     GEAR CHECKLIST
+══════════════════════════════════════════════════════ -->
+<section id="gear">
+  <h2>Gear Checklist</h2>
+  <p style="color:var(--text-muted); font-size:13.5px; margin-bottom:1rem;">Confirm what the cabin has — pack anything it doesn't. Starred items are non-negotiable.</p>
+  <div class="gear-grid">
+    <div class="gear-item critical"><strong>Instant-read meat thermometer</strong> — used on every cook except burgers</div>
+    <div class="gear-item critical"><strong>12" cast iron skillet</strong> — used for every cook</div>
+    <div class="gear-item critical"><strong>5–6 qt Dutch oven with lid</strong> — chuck roast</div>
+    <div class="gear-item"><strong>Sheet pan</strong> — asparagus roasting</div>
+    <div class="gear-item critical"><strong>Wire rack</strong> — salmon pellicle formation</div>
+    <div class="gear-item"><strong>Flat metal spatula</strong> — smash burgers</div>
+    <div class="gear-item"><strong>Parchment paper</strong> — smash burgers (between spatula and beef)</div>
+    <div class="gear-item critical"><strong>Traeger + alder or cherry pellets</strong> — smoke day</div>
+    <div class="gear-item"><strong>Small fan or open window access</strong> — pellicle formation</div>
+    <div class="gear-item"><strong>Plastic wrap</strong> — compound butter rolling</div>
+    <div class="gear-item"><strong>Airtight container or zip-lock bags</strong> — storing smoked salmon</div>
+    <div class="gear-item"><strong>Aluminum foil</strong> — resting steaks, roasting garlic</div>
+    <div class="gear-item"><strong>Wooden cutting board</strong> — resting and shredding meat</div>
+    <div class="gear-item"><strong>Large pot</strong> — boiling potatoes</div>
+    <div class="gear-item"><strong>Wooden spoon</strong> — deglazing and stirring</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     GROCERY LIST
+══════════════════════════════════════════════════════ -->
+<section id="groceries">
+  <h2>Master Grocery List</h2>
+  <div class="grocery-grid">
+
+    <!-- FORT COLLINS -->
+    <div class="grocery-col">
+      <div class="grocery-store-header">
+        <h3>Stop 1 — Fort Collins</h3>
+        <div class="sub">Tonight · Specialty butcher + grocery</div>
+      </div>
+      <div class="grocery-body">
+        <h4>Proteins (specialty butcher)</h4>
+        <ul class="grocery-list">
+          <li>3 lb boneless beef chuck roast, well-marbled</li>
+          <li>4 T-bone steaks, 1–1.5" thick</li>
+          <li>2 filet mignon, 6–8 oz each, 1.5–2" thick <em style="font-size:11px;">(or buy in Granby if concerned about freshness)</em></li>
+          <li>1 lb ground beef, 80/20 (smash burgers)</li>
+          <li>1 lb salmon fillet, skin-on — uniform thickness (for smoking)</li>
+          <li>2 salmon fillets, 6–8 oz each, skin-on (pan-seared dinner)</li>
+        </ul>
+
+        <h4>Dairy</h4>
+        <ul class="grocery-list">
+          <li>2 lbs unsalted butter (compound butters, basting, mashed potatoes, pan sauces)</li>
+          <li>1 pint heavy cream</li>
+        </ul>
+
+        <h4>Specialty / Pantry</h4>
+        <ul class="grocery-list">
+          <li>Fleur de sel or Maldon sea salt</li>
+          <li>1 bottle red wine (Pinot Noir or Merlot — braise + drink)</li>
+          <li>4 oz cream cheese (smoked salmon board)</li>
+          <li>Small jar capers</li>
+          <li>Dijon mustard</li>
+          <li>Balsamic vinegar</li>
+        </ul>
+
+        <h4>Fresh Herbs</h4>
+        <ul class="grocery-list">
+          <li>Large bunch fresh thyme (multiple cooks — get extra)</li>
+          <li>Fresh flat-leaf parsley</li>
+          <li>Fresh dill (salmon board + pan-seared salmon)</li>
+          <li>Fresh rosemary</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- GRANBY -->
+    <div class="grocery-col">
+      <div class="grocery-store-header" style="background:var(--green);">
+        <h3>Stop 2 — City Market Granby</h3>
+        <div class="sub">On the way through · Standard groceries</div>
+      </div>
+      <div class="grocery-body">
+        <h4>Produce</h4>
+        <ul class="grocery-list">
+          <li>3–4 lbs Yukon Gold potatoes (mashed potatoes + hash)</li>
+          <li>2 bunches asparagus (salmon night + filet night)</li>
+          <li>3 yellow onions</li>
+          <li>4–5 shallots</li>
+          <li>2–3 garlic bulbs</li>
+          <li>2 large carrots (chuck roast braise)</li>
+          <li>2 celery stalks (chuck roast braise)</li>
+          <li>4 lemons</li>
+          <li>1 head cabbage or bag pre-shredded coleslaw mix</li>
+          <li>2 limes (tacos)</li>
+          <li>1 cup cherry tomatoes (wedge salad)</li>
+          <li>¼ red onion (wedge salad + salmon board)</li>
+          <li>Fresh ginger (salmon brine) or ground ginger</li>
+          <li>1 bunch green onions / scallions (optional garnish)</li>
+        </ul>
+
+        <h4>Proteins / Dairy</h4>
+        <ul class="grocery-list">
+          <li>1 dozen eggs (beef hash)</li>
+          <li>4 slices American cheese (smash burgers)</li>
+          <li>4 oz crumbled blue cheese (wedge salad)</li>
+          <li>Cotija cheese (tacos, optional)</li>
+          <li>Sour cream</li>
+          <li>Whole milk (mashed potatoes)</li>
+          <li>6 strips bacon (wedge salad)</li>
+        </ul>
+
+        <h4>Bread / Crackers</h4>
+        <ul class="grocery-list">
+          <li>4 hamburger buns (smash burgers)</li>
+          <li>1 crusty loaf (chuck roast night)</li>
+          <li>Box of water crackers or Triscuits (salmon board)</li>
+          <li>Corn or flour tortillas (tacos)</li>
+        </ul>
+
+        <h4>Pantry Staples</h4>
+        <ul class="grocery-list">
+          <li>Kosher salt (Diamond Crystal if available)</li>
+          <li>Black peppercorns</li>
+          <li>Olive oil (extra-virgin + cooking)</li>
+          <li>Neutral oil — avocado or canola (high-heat searing)</li>
+          <li>Soy sauce (salmon brine)</li>
+          <li>Worcestershire sauce (chuck roast + hash)</li>
+          <li>Brown sugar, packed (salmon brine)</li>
+          <li>Tomato paste, small can (chuck roast)</li>
+          <li>Bay leaves</li>
+          <li>Dried thyme + dried rosemary (backup)</li>
+          <li>Ground cumin (chuck roast)</li>
+          <li>Mayonnaise (coleslaw, blue cheese dressing)</li>
+        </ul>
+
+        <h4>Beverages</h4>
+        <ul class="grocery-list">
+          <li>Additional wine for the week</li>
+          <li>Beer (arrival night)</li>
+        </ul>
+
+        <h4>Salmon Board Extras</h4>
+        <ul class="grocery-list">
+          <li>1 small cucumber (optional)</li>
+          <li>Everything bagel seasoning (optional)</li>
+        </ul>
+
+        <h4>Traeger</h4>
+        <ul class="grocery-list">
+          <li>Alder or cherry wood pellets (check if cabin has)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<footer>
+  <span>Granby, Colorado · May 20–28, 2026</span><br>
+  <span style="opacity:0.4; font-size:11px; margin-top:0.5rem; display:block;">Cast iron. Dutch oven. Traeger. Just the two of you.</span>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const STORAGE_KEY = 'granby-cabin-2026-checks';
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch (e) {}
+
+    const selectors = ['.checklist li', '.grocery-list li', '.gear-item'];
+    let idx = 0;
+
+    selectors.forEach(function (sel) {
+      document.querySelectorAll(sel).forEach(function (item) {
+        const id = 'cb-' + idx++;
+
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.id = id;
+        cb.className = 'cabin-check';
+        cb.checked = !!saved[id];
+
+        const lbl = document.createElement('label');
+        lbl.htmlFor = id;
+        lbl.className = 'cabin-label';
+        while (item.firstChild) lbl.appendChild(item.firstChild);
+
+        item.appendChild(cb);
+        item.appendChild(lbl);
+
+        if (cb.checked) item.classList.add('checked-item');
+
+        cb.addEventListener('change', function () {
+          saved[id] = cb.checked;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+          item.classList.toggle('checked-item', cb.checked);
+        });
+      });
+    });
+  });
+</script>
+</body>
+</html>
